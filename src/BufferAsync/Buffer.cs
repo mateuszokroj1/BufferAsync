@@ -22,10 +22,10 @@ namespace BufferAsync
 
         #region Fields
 
-        private Memory<byte> buffer = Memory<byte>.Empty;
+        private Span<byte> buffer = Span<byte>.Empty;
 
         private readonly SemaphoreSlim locker = new SemaphoreSlim(1, 1);
-        private readonly IDictionary<Guid, Memory<byte>> blocksCollection = new Dictionary<Guid, Memory<byte>>();
+        private readonly IDictionary<Guid, (int offset, int length)> blocksCollection = new Dictionary<Guid, (int offset, int length)>();
 
         #endregion
 
